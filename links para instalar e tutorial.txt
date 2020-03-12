@@ -1,0 +1,2 @@
+http://selenium-release.storage.googleapis.com/index.html  - download dos servidores
+https://rpubs.com/johndharrison/RSelenium-Basics           - tutorial
