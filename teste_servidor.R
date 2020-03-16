@@ -3,7 +3,6 @@ library(RSelenium)
 # exemplo de uso funcional
 # digitar no prompt para subir o servidor 
 # java -Dwebdriver.chrome.verboseLogging=true -Dwebdriver.chrome.driver=C:/Users/cgt/AppData/Local/binman/binman_chromedriver/win32/80.0.3987.106/chromeDriver.exe -jar selenium-server-standalone-4.0.0-alpha-2.jar -port 4444
-# cDrv <- chrome(port = 4444L, version = "80.0.3987.106")
 # após estar rodando o servidor será acessado pela porta: 4444
 
 # --------------------------------------------
