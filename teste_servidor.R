@@ -41,3 +41,29 @@ elemLink$clickElement()
 #install.packages("installr")
 #library(installr)
 #updateR()
+
+#------------------- Injecting JavaScript ------------------------------------------------------
+# https://ropensci.org/tutorials/rselenium_tutorial/
+
+rD <- rsDriver(browser = "chrome", version = "latest", port = 4444L, chromever = "latest", verbose = TRUE, check = FALSE)
+remDr <- rD$client
+remDr$navigate("http://www.google.com/ncr")
+webElem <- remDr$findElement("css selector", "img#hplogo")
+# checa se o elemento não está visivel
+remDr$executeScript("return document.getElementById('hplogo').hidden;")
+
+# seta o elemento para não ser exibido
+remDr$executeScript("document.getElementById('hplogo').hidden = true;")
+# verifica se o elemento está de fato, invisivel
+remDr$executeScript("return document.getElementById('hplogo').hidden;")
+
+
+
+
+
+
+
+
+
+
+
