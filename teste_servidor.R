@@ -57,13 +57,12 @@ remDr$executeScript("document.getElementById('hplogo').hidden = true;")
 # verifica se o elemento está de fato, invisivel
 remDr$executeScript("return document.getElementById('hplogo').hidden;")
 
-
-
-
-
-
-
-
+# ----------------- Injecting JavaScript asynchronously --------------------
+# nao deu certo a execucao do assincrono
+rD <- rsDriver(browser = "chrome", version = "latest", port = 4444L, chromever = "latest", verbose = TRUE, check = FALSE)
+remDr <- rD$client
+remDr$executeScript("setTimeout(function(){ alert('Hello');},5000); return 'DONE';")
+#remDr$setAsyncScriptTimeout(milliseconds = 10000)
 
 
 
