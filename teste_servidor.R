@@ -1,4 +1,5 @@
 library(RSelenium)
+library(stringr)
 # tem que rodar via camando o codigo, ex p/ windows: java -jar selenium-server-standalone-x.xx.x.jar
 # exemplo de uso funcional
 # digitar no prompt para subir o servidor 
@@ -11,6 +12,32 @@ rD <- rsDriver(browser = "chrome", version = "latest", port = 4444L, chromever =
 remDr <- rD$client
 remDr$navigate("https://google.com")
 
+webElem <- remDr$findElement(using = 'name', value = 'q')
+webElem$getElementAttribute("name")
+webElem$sendKeysToElement(list("corona virus", key = "enter"))
 
+#----------- teste da pg do google -------
+rD <- rsDriver(browser = "chrome", version = "latest", port = 4444L, chromever = "latest", verbose = TRUE, check = FALSE)
+remDr <- rD$client
+remDr$navigate("http://www.google.com/ncr")
+webElem <- remDr$findElement(using = "xpath", "//*/input[@name = 'q']")
+webElem$sendKeysToElement(list("R Cran", key = "enter"))
 
+webElems <- remDr$findElements(using = 'css selector', "div.g div.r h3")
+resHeaders <- unlist(lapply(webElems, function(x){x$getElementText()}))
 
+# se for ate a div r, vem com 3 textos, para resolver isso usamos
+  #webElems <- remDr$findElements(using = 'css selector', "div.g div.r")
+  #stringHeaders <- unlist(lapply(resHeaders, function(x){strsplit(x, "\n" )}))#
+  #links <- stringHeaders[seq(1, length(stringHeaders), 3)]
+  #elemLink <- webElems[[which(links == "The Comprehensive R Archive Network")]]
+  #elemLink$clickElement()
+
+#methods(class=class(webElems))
+elemLink <- webElems[[which(resHeaders == "The Comprehensive R Archive Network")]]
+elemLink$clickElement()
+
+# --------- para fazer o update da linguagem R ------
+#install.packages("installr")
+#library(installr)
+#updateR()
