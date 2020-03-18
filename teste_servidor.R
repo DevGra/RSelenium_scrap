@@ -64,5 +64,9 @@ remDr <- rD$client
 remDr$executeScript("setTimeout(function(){ alert('Hello');},5000); return 'DONE';")
 #remDr$setAsyncScriptTimeout(milliseconds = 10000)
 
-
-
+#------------------------- Frames and Windows ------------------------------
+rD <- rsDriver(browser = "chrome", version = "latest", port = 4444L, chromever = "latest", verbose = TRUE, check = FALSE)
+remDr <- rD$client
+remDr$navigate("http://www.r-project.org/")
+# selenium tem que estar ativo
+XML::htmlParse(remDr$getPageSource())
